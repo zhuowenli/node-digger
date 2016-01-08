@@ -1,0 +1,14 @@
+{
+  "name": "node-digger",
+  "version": "1.0.0",
+  "description": "实现简单的node爬虫工具",
+  "main": "tools.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "卓文理",
+  "license": "ISC",
+  "dependencies": {
+    "iconv": "^2.1.11"
+  }
+}
