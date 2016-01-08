@@ -12,7 +12,8 @@ var Iconv = require('iconv').Iconv;
 var tools = {
     getCaches: {},
     get: function(url, callback, encoding){
-        url = url.replace(/#.+$/, '');
+        // 去掉 hash
+        url = url.replace(/#.*$/, '');
 
         var cache = this.getCaches;
         if (cache[url]) {
@@ -57,7 +58,36 @@ var tools = {
         }).on('error', function(err){
             callback(err);
         });
-    }
+    },
+    // 同步保存文件
+    writeFile: function(filePath, content){
+        var destPath = path.dirname(filePath);
+
+        this.mkDeepDir(destPath);
+
+        // 同步写入文件
+        fs.writeFileSync(filePath, content);
+    },
+    // 自动补全路径
+    mkDeepDir: function(destPath){
+        var tmpPath = '';
+        var destPaths = [];
+        var paths = destPath.replace(/\\+/g, '/').split('/');
+
+        if (paths[0] === '') {
+            paths[0] = '/';
+        }
+
+        while(paths.length) {
+            destPaths.push(paths.shift());
+
+            tmpPath = destPaths.join('/');
+
+            if (!fs.existsSync(tmpPath)) {
+                fs.mkdirSync(tmpPath);
+            }
+        }
+    },
 }
 
 module.exports = tools;

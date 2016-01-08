@@ -5,7 +5,7 @@
  */
 
 var fs = require('fs');
-var tools = require('./tools');
+var tools = require('./common/tools');
 
 var url = 'http://www.zhuowenli.com';
 
