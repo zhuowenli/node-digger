@@ -5,3 +5,6 @@ node_modules
 demo
 demo-2
 **/*.html
+
+# osx
+.DS_Store
